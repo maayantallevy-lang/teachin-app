@@ -1,4 +1,4 @@
-name: Build TeachIn App
+name: Build TeachIng App
 on: 
   push:
     branches: [ main, master ]
@@ -36,7 +36,7 @@ jobs:
           cat << 'EOF_CAP' > capacitor.config.json
           {
             "appId": "com.teachin.app",
-            "appName": "TeachIn",
+            "appName": "TeachIng",
             "webDir": "www",
             "bundledWebRuntime": false
           }
@@ -52,7 +52,7 @@ jobs:
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-              <title>TeachIn</title>
+              <title>TeachIng</title>
               <script src="https://cdn.tailwindcss.com"></script>
               <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
               <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -188,7 +188,7 @@ jobs:
                   if (!user) {
                       return (
                           <div className="flex flex-col h-screen items-center justify-center p-8 text-center bg-slate-900">
-                              <h1 className="text-4xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">TeachIn</h1>
+                              <h1 className="text-4xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">TeachIng</h1>
                               <input className="w-full max-w-sm p-4 mb-4 rounded-xl text-black" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
                               <input className="w-full max-w-sm p-4 mb-8 rounded-xl text-black" type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
                               <button className="btn-primary w-full max-w-sm" onClick={handleLogin}>Login / Register</button>
@@ -257,14 +257,14 @@ jobs:
       - name: Generate Testing Keystore
         run: |
           cd teachin-app/android
-          keytool -genkey -v -keystore release.keystore -alias releasealias -keyalg RSA -keysize 2048 -validity 10000 -storepass password123 -keypass password123 -dname "CN=TeachIn, OU=Dev, O=TeachIn, L=TelAviv, S=Israel, C=IL"
+          keytool -genkey -v -keystore release.keystore -alias releasealias -keyalg RSA -keysize 2048 -validity 10000 -storepass password123 -keypass password123 -dname "CN=TeachIng, OU=Dev, O=TeachIng, L=TelAviv, S=Israel, C=IL"
 
       - name: Install ImageMagick
         run: sudo apt-get install -y imagemagick
 
       - name: Create Logo
         run: |
-          convert -size 512x512 gradient:#7c3aed-#4c1d95 -gravity center -pointsize 100 -fill white -annotate 0 "TeachIn" logo.png
+          convert -size 512x512 gradient:#7c3aed-#4c1d95 -gravity center -pointsize 100 -fill white -annotate 0 "TeachIng" logo.png
           mkdir -p teachin-app/android/app/src/main/res/mipmap-mdpi teachin-app/android/app/src/main/res/mipmap-hdpi teachin-app/android/app/src/main/res/mipmap-xhdpi teachin-app/android/app/src/main/res/mipmap-xxhdpi teachin-app/android/app/src/main/res/mipmap-xxxhdpi
           convert logo.png -resize 48x48 teachin-app/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
           convert logo.png -resize 72x72 teachin-app/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
